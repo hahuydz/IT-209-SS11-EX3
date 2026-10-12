@@ -13,6 +13,13 @@ jobs:
       - name: Checkout mã nguồn
         uses: actions/checkout@v5
 
+      - name: Tạo các tệp cấu hình Gradle giả lập cho Cache
+        run: |
+          mkdir -p gradle/wrapper
+          echo "plugins { id 'java' }" > build.gradle
+          echo "rootProject.name = 'demo'" > settings.gradle
+          touch gradle/wrapper/gradle-wrapper.properties
+
       - name: Thiết lập môi trường Java JDK 17 và bật Gradle Cache
         uses: actions/setup-java@v5
         with:
@@ -20,7 +27,7 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Tạo thư mục và giả lập tệp tin JAR
+      - name: Giả lập biên dịch tệp JAR (Artifact Simulation)
         run: |
           mkdir -p build/libs
           echo "Mock Jar File for Caching Test" > build/libs/app-demo.jar
