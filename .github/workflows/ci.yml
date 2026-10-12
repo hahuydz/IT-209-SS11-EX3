@@ -20,10 +20,10 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Giả lập biên dịch tệp JAR (Artifact Simulation)
+      - name: Tạo thư mục và giả lập tệp tin JAR
         run: |
           mkdir -p build/libs
-          echo "Mock Spring Boot Jar File with Cache" > build/libs/app-demo.jar
+          echo "Mock Jar File for Caching Test" > build/libs/app-demo.jar
 
       - name: Lưu trữ thành phẩm JAR Artifact
         uses: actions/upload-artifact@v4
